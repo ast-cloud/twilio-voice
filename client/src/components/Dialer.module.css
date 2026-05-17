@@ -1,0 +1,174 @@
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 1.5rem;
+  padding: 2rem 1.75rem;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.03em;
+}
+
+/* Status badge */
+.statusBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #64748b;
+}
+.statusBadge.ready .dot,
+.statusBadge.on-call .dot { background: #22c55e; }
+.statusBadge.ready { color: #22c55e; }
+.statusBadge.on-call { color: #22c55e; }
+.statusBadge.calling .dot,
+.statusBadge.ringing .dot { background: #f59e0b; }
+.statusBadge.calling { color: #f59e0b; }
+.statusBadge.ringing { color: #f59e0b; }
+.statusBadge.incoming .dot { background: #3b82f6; }
+.statusBadge.incoming { color: #3b82f6; }
+.statusBadge.error .dot { background: #ef4444; }
+.statusBadge.error { color: #ef4444; }
+.statusBadge.registering .dot { background: #a78bfa; }
+.statusBadge.registering { color: #a78bfa; }
+
+.error {
+  font-size: 0.75rem;
+  color: #f87171;
+  text-align: center;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+/* Number display */
+.display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+.numberInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f1f5f9;
+  font-size: 1.1rem;
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.05em;
+}
+.numberInput::placeholder { color: #475569; }
+.clearBtn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s;
+}
+.clearBtn:hover:not(:disabled) { color: #f1f5f9; }
+.clearBtn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Dial pad */
+.dialpad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.digit {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  color: #e2e8f0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.digit:hover:not(:disabled) {
+  background: #1e3a5f;
+  border-color: #3b82f6;
+}
+.digit:active:not(:disabled) { background: #1e40af; }
+.digit:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Incoming call banner */
+.incomingBanner {
+  text-align: center;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid #3b82f6;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+.incomingBanner p {
+  font-size: 0.9rem;
+  color: #93c5fd;
+  margin-bottom: 0.75rem;
+}
+.incomingActions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+.actionBtn {
+  flex: 1;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, filter 0.15s;
+}
+.actionBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.actionBtn:not(:disabled):hover { filter: brightness(1.1); }
+.actionBtn:not(:disabled):active { filter: brightness(0.9); }
+
+.connect { background: #3b82f6; color: #fff; }
+.call { background: #22c55e; color: #fff; }
+.hangup { background: #ef4444; color: #fff; }
+.disconnect { background: #475569; color: #fff; }
+.mute { background: #f59e0b; color: #000; }
+.unmute { background: #22c55e; color: #fff; }
+.accept { background: #22c55e; color: #fff; }
+.reject { background: #ef4444; color: #fff; }
