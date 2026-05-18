@@ -39,7 +39,8 @@ export default function Dialer() {
   const connect = useCallback(async () => {
     try {
       updateStatus("registering");
-      const res = await fetch("/token?identity=browser-user");
+      const base = import.meta.env.VITE_BACKEND_URL ?? "";
+      const res = await fetch(`${base}/token?identity=browser-user`);
       const { token } = await res.json();
 
       const device = new Device(token, { logLevel: "warn" });

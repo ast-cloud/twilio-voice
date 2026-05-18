@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/token",
+      "destination": "https://twilio-voice-backend-beta.vercel.app/token"
+    },
+    {
+      "source": "/voice",
+      "destination": "https://twilio-voice-backend-beta.vercel.app/voice"
+    }
+  ]
+}
