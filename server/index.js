@@ -48,9 +48,15 @@ app.get("/token", (req, res) => {
 app.post("/voice", (req, res) => {
   const twiml = new VoiceResponse();
   const to = req.body.To;
+  const from = req.body.From;
+  console.log("Received a call from ", from, " to ", to);
   try{
 
-    if (to) {
+    if(from==="+918318485265"){ //Check if gym customer is calling, if yes then connect to gym number
+      const localGymNumber = "+919532864296"; // Replace with your gym's phone number after fetching it from db
+      const dial = twiml.dial({ callerId: from });
+      dial.number(localGymNumber);
+    } else if (to) {
 
       // Emergency Block Check
       const cleanTo = to.replace(/^\+1/, "").trim();
