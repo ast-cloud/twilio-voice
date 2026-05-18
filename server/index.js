@@ -55,7 +55,7 @@ app.post("/voice", (req, res) => {
     if(from==="+19295279683" ||from==="+918318485265" || from==="+917974035876"){ //Check if gym customer is calling, if yes then connect to gym number
       console.log("A gym customer is calling, connecting to gym number")
       const localGymNumber = "+919532864296"; // Replace with your gym's phone number after fetching it from db
-      const dial = twiml.dial({ callerId: from });
+      const dial = twiml.dial({ callerId: TWILIO_CALLER_ID });
       dial.number(localGymNumber);
       console.log("Generated TwiML for gym call to number: ", localGymNumber)
     } else if (to) {
