@@ -48,20 +48,39 @@ app.get("/token", (req, res) => {
 app.post("/voice", (req, res) => {
   const twiml = new VoiceResponse();
   const to = req.body.To;
+  try{
 
-  if (to) {
-    const dial = twiml.dial({ callerId: TWILIO_CALLER_ID });
+    if (to) {
 
-    // If To looks like a phone number, dial it; otherwise connect to a browser client
-    if (to.startsWith("+") || /^\d+$/.test(to)) {
-      dial.number(to);
+      // Emergency Block Check
+      const cleanTo = to.replace(/^\+1/, "").trim();
+      if (cleanTo === "911" || cleanTo === "933") {
+        console.log(`[BLOCK] Blocked an attempted call to emergency number: ${to}`);
+        twiml.say("Emergency calling is not supported on this platform. Please use your standard mobile device.");
+        twiml.hangup();
+      }
+
+      console.log("Going to call")
+      const dial = twiml.dial({ callerId: TWILIO_CALLER_ID });
+      console.log("1")
+      // If To looks like a phone number, dial it; otherwise connect to a browser client
+      if (to.startsWith("+") || /^\d+$/.test(to)) {
+        console.log("2")
+        dial.number(to);
+        console.log("3")
+      } else {
+        console.log("4")
+        dial.client(to);
+        console.log("5")
+      }
     } else {
-      dial.client(to);
+      twiml.say("Thank you for calling. Goodbye.");
     }
-  } else {
-    twiml.say("Thank you for calling. Goodbye.");
+  }catch(error){
+    console.log("Error while calling : ", error);
   }
-
+  console.log("6")
+  console.log(twiml.toString())
   res.type("text/xml");
   res.send(twiml.toString());
 });

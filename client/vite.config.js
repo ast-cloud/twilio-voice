@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      "/token": "http://localhost:3001",
-      "/voice": "http://localhost:3001",
+      "/token": "https://twilio-voice-backend-beta.vercel.app",
+      "/voice": "https://twilio-voice-backend-beta.vercel.app",
     },
   },
 });
